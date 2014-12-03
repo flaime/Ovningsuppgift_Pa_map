@@ -3,23 +3,21 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-class WordCounter {
+class WordCounterdel1 {
     Map<String, Integer> ord = new HashMap<String, Integer>();
     int totOrd = 0;
     public void processWord(String word, int lineNumber){
     	totOrd++;
-//    	ord = ;
-//    	System.out.println(ord.get(word));
-    	if( ord.containsKey(word)){ //ord.get(word) != null){
-//    		System.out.println(ord.get(word));
+    	if( ord.containsKey(word)){
     		int hurMångaGånger = ord.get(word).intValue() + 1;
-    		System.out.println(hurMångaGånger + "");
+
     		ord.put(word,hurMångaGånger);
     	}else {
-    		ord.put(word,1);
+    		ord.put(word.toLowerCase(),1);
 		}
-//    	System.out.println(lineNumber + " => " + word);
     }
 
     public void processFile(String fileName) {
@@ -47,7 +45,7 @@ class WordCounter {
 		antalOrd++;
 		if(högstaVärde < entry.getValue())
 			högstaVärde = entry.getValue();
-	    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+	    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
 	}
 	
 	System.out.println("\n\nHögsta värdet är " + högstaVärde + " atanl ord är = " + antalOrd + " totOrdf = " + totOrd);
@@ -61,20 +59,22 @@ class WordCounter {
     		
     		if(inmatat.equalsIgnoreCase("exit"))
     			break;
-    		else if(ord.containsKey(inmatat)){
+    		else if(ord.containsKey(inmatat.toLowerCase())){
     			System.out.println("ordet fins med " + ord.get(inmatat).toString() + " gånger.");
     		}
     	}
     }
 
-    public static void main(String[] args) {
-        if (args.length < 1) {
+    public static void main(String[] args) {    	
+    	
+    	String[] argsss = { "C:\\Users\\linus\\Documents\\GitHub\\Ovningsuppgift_Pa_map\\src\\ord.txt"};
+        if (argsss.length < 1) {
             System.out.println("Usage: java WordCounter filename");
             System.exit(1);
         }
         
-        WordCounter wc = new WordCounter();       
-        wc.processFile(args[0]);
+        WordCounterdel1 wc = new WordCounterdel1();       
+        wc.processFile(argsss[0]);
         wc.loop();
     }
 }
