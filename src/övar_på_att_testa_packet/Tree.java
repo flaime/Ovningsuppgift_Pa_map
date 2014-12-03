@@ -58,6 +58,29 @@ class Tree{
 	    print(where.left);
 	}
     }
+    
+    public int height() {
+		return height(root, 0);
+	}
+    
+    private int height(Node nodAttUtgåFråNode, int höjd) {
+		if (nodAttUtgåFråNode != null) {
+			höjd++;
+			int höjdVänster = height(nodAttUtgåFråNode.left,höjd);
+			int höjdHöger = height(nodAttUtgåFråNode.right, höjd);
+			
+			if(höjdVänster >= höjdHöger){
+				System.out.println("vänster");
+				return höjdVänster;
+			}
+			else if(höjdHöger >= höjdVänster){
+				System.out.println("höger");
+				return höjdHöger;
+			}
+			
+		}
+		return höjd;
+	}
 }
 
 class TreeExempel{
@@ -78,6 +101,10 @@ class TreeExempel{
 	
 	System.out.println("det finns " + tree.size() + " antal noder i trädet.");
 	
+	System.out.println("Höjden på trädet är " + tree.height() + " högt.");
+	
 	
     }
 }
+
+
