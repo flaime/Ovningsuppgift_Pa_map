@@ -31,9 +31,24 @@ class Tree{
     public void add(Node ny){
 	root = add(root, ny);
     }
+    
+     public int size(){
+    	 size = 0;
+    	 size(root);
+    	 return size;
+     }
+     
+     private int size;
+     private void size(Node nodAttUtgåFrån){
+    	 if(nodAttUtgåFrån != null){
+    		 size++;
+    		 size(nodAttUtgåFrån.left);
+    		 size(nodAttUtgåFrån.right);
+    	 }
+     }
 
     public void print(){
-	print(root, 0);
+	print(root );// , 0);
     }
 
     private void print(Node where){
@@ -60,5 +75,9 @@ class TreeExempel{
 	tree.add(new Node("Peter", 103));
 	tree.add(new Node("Doris", 80));
 	tree.print();
+	
+	System.out.println("det finns " + tree.size() + " antal noder i trädet.");
+	
+	
     }
 }
